@@ -19,7 +19,7 @@
 
 ### 1. Инфраструктура (PostgreSQL)
 
-На этой машине уже запущена в WSL (`demo-pgvector`, порт 5433, БД `incident_buckets`).
+`demo-pgvector`, порт 5433, БД `incident_buckets`
 Схема создаётся вручную (Liquibase отключён):
 
 ```sql
@@ -38,7 +38,7 @@ cd backend
 ./gradlew bootRun        # Windows: gradlew.bat bootRun
 ```
 
-Backend поднимется на **http://localhost:8080**. ИИ нет, Kafka нет, Liquibase отключён.
+Backend поднимется на **http://localhost:8080**.
 
 ### 3. Frontend
 
@@ -87,10 +87,5 @@ npm run dev
 |------------|------------|
 | `DB_URL` / `DB_USERNAME` / `DB_PASSWORD` | Подключение к PostgreSQL |
 
-Liquibase отключён (`spring.liquibase.enabled: false`) — схема не создаётся и не сидируется автоматически.
 
----
 
-## ADR (ключевые решения)
-
-- `0001` — Бакет — это уровень критичности, а не отдельная сущность
