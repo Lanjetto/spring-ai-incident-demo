@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: incident-buckets
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/incident_buckets}
+    username: ${DB_USERNAME:myuser}
+    password: ${DB_PASSWORD:secret}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: incident-buckets
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.example.incidentbuckets"
+        spring.json.value.default.type: "com.example.incidentbuckets.kafka.UserMessageEvent"
+  ai:
+    model:
+      chat: openai
+      embedding: ollama
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      base-url: ${OPENAI_BASE_URL:http://srv-spugpu/generative}
+      chat:
+        options:
+          model: ${OPENAI_CHAT_MODEL:Qwen3-32B}
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+      embedding:
+        model: ${OLLAMA_EMBEDDING_MODEL:mxbai-embed-large}
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        dimensions: 1024
+        index-type: HNSW
+
+incident-buckets:
+  topic: ${INCIDENT_TOPIC:user-messages}
+  # эскалация: каждые N сообщений в инциденте поднимают критичность на одну ступень к A1
+  escalation-step-messages: 10
+  # сколько последних инцидентов-кандидатов показывать LLM при отнесении
+  assignment-candidates: 10
+  # сколько похожих исторических инцидентов из KB возвращать для подсказки
+  rag-top-k: 4
+
+logging:
+  level:
+    com.example.incidentbuckets: INFO

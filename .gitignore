@@ -1,0 +1,23 @@
+# Environment & secrets
+.env
+*.env
+
+# Node.js
+node_modules/
+frontend/dist/
+
+# Gradle
+backend/.gradle/
+backend/build/
+
+# IDE
+.idea/
+*.iml
+
+# Logs & runtime
+*.log
+*.pid
+
+# OS
+.DS_Store
+Thumbs.db
