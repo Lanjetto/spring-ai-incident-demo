@@ -41,5 +41,44 @@ services:
       timeout: 10s
       retries: 15
 
+  ollama:
+    image: ollama/ollama:latest
+    container_name: incident-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list > /dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    # GPU (NVIDIA / Docker Desktop): раскомментируй, если есть GPU
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+  ollama-init:
+    image: ollama/ollama:latest
+    container_name: incident-ollama-init
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        ollama pull granite4.1:8b
+        ollama pull mxbai-embed-large
+    volumes:
+      - ollama-models:/root/.ollama
+    restart: "no"
+
 volumes:
   db-data:
+  ollama-models:
