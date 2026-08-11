@@ -1,0 +1,3605 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: incident-buckets
+      changes:
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Интеграция с CRM упала, данные не синхронизируются"
+              - column:
+                  name: resolution
+                  value: "Обновлены креды интеграции с CRM: истёк API-ключ. Ключ перевыпущен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Конфигурация профиля не найдена"
+              - column:
+                  name: resolution
+                  value: "Профиль не был указан при запуске. Добавлен SPRING_PROFILES_ACTIVE."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск товаров зависает на запросе, страница не отвечает"
+              - column:
+                  name: resolution
+                  value: "Включено кэширование популярных запросов в Redis, нагрузка на БД снизилась в 3 раза."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Продюсер не может записать в топик, ошибка timeout"
+              - column:
+                  name: resolution
+                  value: "Обнаружен конфликт group.id у двух сервисов. Заданы уникальные group.id."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск товаров зависает на запросе, страница не отвечает"
+              - column:
+                  name: resolution
+                  value: "Включено кэширование популярных запросов в Redis, нагрузка на БД снизилась в 3 раза."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Кластер работает медленно, задержки на всех сервисах"
+              - column:
+                  name: resolution
+                  value: "Найдена утечка в одном сервисе: рекурсивный вызов. Исправлено, нагрузка упала."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Ночная выгрузка не прошла"
+              - column:
+                  name: resolution
+                  value: "Выгрузка падала из-за временного недоступности БД. Добавлен retry."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Письма не отправляются пользователям, уведомления не доходят"
+              - column:
+                  name: resolution
+                  value: "SMTP-сервер блокировал домен: подтверждён SPF/DKIM, письма пошли."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "API отдаёт 500 на каждый третий запрос, периодически сбоит"
+              - column:
+                  name: resolution
+                  value: "Проблема в пуле соединений: утечка connection. Добавлен validationQuery и ограничение на число соединений."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Сервис не стартует после обновления конфигурации"
+              - column:
+                  name: resolution
+                  value: "Неверный синтаксис в YAML конфига. Исправлен синтаксис, сервис стартовал."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск по заказам работает, но подтормаживает в пиковые часы"
+              - column:
+                  name: resolution
+                  value: "Проблема была в отсутствии connection pool. Настроен HikariCP, тайминги стабилизировались."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Курс не открывается, страница обучения недоступна"
+              - column:
+                  name: resolution
+                  value: "Курс был скрыт конфигурацией. Снят флаг скрытия, курс доступен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Вебинар-сервис недоступен, записи не загружаются"
+              - column:
+                  name: resolution
+                  value: "Добавлен resilience-механизм: circuit breaker и retry с экспоненциальной задержкой."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Сервис не стартует после обновления конфигурации"
+              - column:
+                  name: resolution
+                  value: "Неверный синтаксис в YAML конфига. Исправлен синтаксис, сервис стартовал."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Пользователи не могут загрузить файл, ошибка загрузки"
+              - column:
+                  name: resolution
+                  value: "Обнаружена проблема с доступом к S3: обновлены права на бакет."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Видео в курсе не воспроизводится"
+              - column:
+                  name: resolution
+                  value: "Видео-кодек не поддерживался. Перекодировано видео, воспроизведение работает."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Материалы курса не загружаются"
+              - column:
+                  name: resolution
+                  value: "Медиа-файлы не отдавались CDN. Исправлен кэш, материалы загружаются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Полнотекстовый поиск по документам стал медленным после добавления данных"
+              - column:
+                  name: resolution
+                  value: "Расширена конфигурация Elasticsearch: добавлены шарды и refresh interval увеличен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Интерфейс подтормаживает после обновления версии"
+              - column:
+                  name: resolution
+                  value: "После обновления выросли JS-бандлы. Включено lazy-loading и code splitting."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Импорт данных из CSV завершается ошибкой"
+              - column:
+                  name: resolution
+                  value: "Ошибка парсинга CSV: некорректные разделители. Добавлена нормализация данных."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Кластер работает медленно, задержки на всех сервисах"
+              - column:
+                  name: resolution
+                  value: "Найдена утечка в одном сервисе: рекурсивный вызов. Исправлено, нагрузка упала."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Бэкенд отдаёт 500 при обращении к API, в логах исключение NullPointerException"
+              - column:
+                  name: resolution
+                  value: "Исправлена null-проверка в сервисе заявок, добавлен интеграционный тест на пустого пользователя."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Конфигурация профиля не найдена"
+              - column:
+                  name: resolution
+                  value: "Профиль не был указан при запуске. Добавлен SPRING_PROFILES_ACTIVE."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "CPU на нодах кластера 100%, всё тормозит"
+              - column:
+                  name: resolution
+                  value: "Добавлены лимиты ресурсов и autoscaling. Кластер стабилизирован."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Панель администратора открывается с задержкой"
+              - column:
+                  name: resolution
+                  value: "Сервер был под нагрузкой другого отчёта. Оптимизирован отчёт, интерфейс разгрузился."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Уведомления в интерфейсе не отображаются"
+              - column:
+                  name: resolution
+                  value: "Баг в клиенте: уведомления скрывались из-за фильтра. Исправлен фильтр."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "CPU на нодах кластера 100%, всё тормозит"
+              - column:
+                  name: resolution
+                  value: "Добавлены лимиты ресурсов и autoscaling. Кластер стабилизирован."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Загрузка документов падает, хранилище недоступно"
+              - column:
+                  name: resolution
+                  value: "Хранилище перезапущено, файлы смонтированы. Добавлен healthcheck."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Консьюмер падает при чтении событий из топика"
+              - column:
+                  name: resolution
+                  value: "Увеличено число партиций и консьюмеров, добавлена параллельность обработки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Сервер возвращает HTTP 500 на все запросы, пользователи не могут открыть ресурс"
+              - column:
+                  name: resolution
+                  value: "Перезапущен проблемный pod, в логах найдено переполнение heap. Увеличен лимит памяти, настроен healthcheck."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Прогресс по курсу не сохраняется"
+              - column:
+                  name: resolution
+                  value: "Прогресс не сохранялся из-за ошибки в JS. Исправлен обработчик сохранения."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Уведомления в интерфейсе не отображаются"
+              - column:
+                  name: resolution
+                  value: "Баг в клиенте: уведомления скрывались из-за фильтра. Исправлен фильтр."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Плановое задание не выполняется, данные не обновляются"
+              - column:
+                  name: resolution
+                  value: "Задание падало из-за отсутствия транзакции. Добавлена аннотация @Transactional."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск по заказам работает, но подтормаживает в пиковые часы"
+              - column:
+                  name: resolution
+                  value: "Проблема была в отсутствии connection pool. Настроен HikariCP, тайминги стабилизировались."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Переменные окружения не подхватываются сервисом"
+              - column:
+                  name: resolution
+                  value: "Имя переменной не совпадало. Исправлено имя, значения подхватились."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Крон не запускается, обработка очереди остановилась"
+              - column:
+                  name: resolution
+                  value: "Крон отключён на новой ноде: включён в конфиге. Расписание восстановлено."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Сетевые задержки между сервисами выросли"
+              - column:
+                  name: resolution
+                  value: "Проблема в DNS-резолвинге: добавлен локальный кэш DNS."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "API внешнего сервиса возвращает 401, интеграция не авторизуется"
+              - column:
+                  name: resolution
+                  value: "Исправлен формат запроса: неверная кодировка payload. Согласован формат со стороной."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Внешний платёжный шлюз не отвечает, оплата не проходит"
+              - column:
+                  name: resolution
+                  value: "Платежный шлюз был на техработах. Добавлен таймаут и повторная попытка оплаты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "SSO-вход работает, но после него не создаётся сессия в приложении"
+              - column:
+                  name: resolution
+                  value: "Добавлена синхронизация сессии с SSO через cookie. Вход стал стабильным."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Один сервис нагружает весь кластер"
+              - column:
+                  name: resolution
+                  value: "Оптимизирован тяжёлый сервис: снижено потребление CPU в 2 раза."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Сетевые задержки между сервисами выросли"
+              - column:
+                  name: resolution
+                  value: "Проблема в DNS-резолвинге: добавлен локальный кэш DNS."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Nginx возвращает 502, приложение недоступно"
+              - column:
+                  name: resolution
+                  value: "Сервер был выключен по техобслуживанию. Поднят, добавлен алерт на недоступность."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Потеряна связь с БД после миграции, таблицы не открываются"
+              - column:
+                  name: resolution
+                  value: "Утечка соединений в приложении: добавлен close() в finally и проверка на утечку через метрики."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Лендинг не открывается, сервер молчит"
+              - column:
+                  name: resolution
+                  value: "Ошибка конфигурации виртуального хоста. Исправлен конфиг nginx."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Внешний платёжный шлюз не отвечает, оплата не проходит"
+              - column:
+                  name: resolution
+                  value: "Платежный шлюз был на техработах. Добавлен таймаут и повторная попытка оплаты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Nginx возвращает 502, приложение недоступно"
+              - column:
+                  name: resolution
+                  value: "Сервер был выключен по техобслуживанию. Поднят, добавлен алерт на недоступность."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Панель администратора открывается с задержкой"
+              - column:
+                  name: resolution
+                  value: "Сервер был под нагрузкой другого отчёта. Оптимизирован отчёт, интерфейс разгрузился."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Диск хранилища заполнен, загрузки прекратились"
+              - column:
+                  name: resolution
+                  value: "Диск очищен от временных файлов, настроена ротация и лимиты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Пользователи не могут войти в систему, пишет неверный пароль"
+              - column:
+                  name: resolution
+                  value: "Сброшен кэш токенов, обновлён секрет подписи JWT. Пользователи перелогинились."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Бэкенд отдаёт 500 при обращении к API, в логах исключение NullPointerException"
+              - column:
+                  name: resolution
+                  value: "Исправлена null-проверка в сервисе заявок, добавлен интеграционный тест на пустого пользователя."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "После перезапуска сервер не поднялся"
+              - column:
+                  name: resolution
+                  value: "Порт занят другим процессом. Освобожден порт, сервер запущен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Строка поиска вводится, но результаты приходят очень долго"
+              - column:
+                  name: resolution
+                  value: "Оптимизирован поисковый запрос: устранён full table scan, добавлен покрывающий индекс."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Сервис стартует, но с неверными параметрами"
+              - column:
+                  name: resolution
+                  value: "Опечатка в параметре. Исправлено значение, сервис работает корректно."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Вебинар-сервис недоступен, записи не загружаются"
+              - column:
+                  name: resolution
+                  value: "Добавлен resilience-механизм: circuit breaker и retry с экспоненциальной задержкой."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Email-рассылка упала с ошибкой SMTP"
+              - column:
+                  name: resolution
+                  value: "Неверный порт SMTP в конфиге. Исправлен порт и добавлена проверка отправки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Интерфейс подтормаживает после обновления версии"
+              - column:
+                  name: resolution
+                  value: "После обновления выросли JS-бандлы. Включено lazy-loading и code splitting."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Внешний платёжный шлюз не отвечает, оплата не проходит"
+              - column:
+                  name: resolution
+                  value: "Платежный шлюз был на техработах. Добавлен таймаут и повторная попытка оплаты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Сертификат не выдаётся после прохождения курса"
+              - column:
+                  name: resolution
+                  value: "Сертификат не генерировался из-за шаблона. Обновлён шаблон, выдача восстановлена."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Scheduler остановлен после деплоя"
+              - column:
+                  name: resolution
+                  value: "Scheduler не инициализировался из-за новой конфигурации. Исправлен бин."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Настройки не применяются после перезапуска"
+              - column:
+                  name: resolution
+                  value: "Конфиг кэшировался при старте. Сброшен кэш, применены новые настройки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Один сервис нагружает весь кластер"
+              - column:
+                  name: resolution
+                  value: "Оптимизирован тяжёлый сервис: снижено потребление CPU в 2 раза."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Авторизация падает с ошибкой на входе в личный кабинет"
+              - column:
+                  name: resolution
+                  value: "Найдена ошибка в хешировании пароля: неверная соль. Восстановлены учётные записи."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "CPU на нодах кластера 100%, всё тормозит"
+              - column:
+                  name: resolution
+                  value: "Добавлены лимиты ресурсов и autoscaling. Кластер стабилизирован."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Сервис стартует, но с неверными параметрами"
+              - column:
+                  name: resolution
+                  value: "Опечатка в параметре. Исправлено значение, сервис работает корректно."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Скачивание файла не работает, 404 на файл"
+              - column:
+                  name: resolution
+                  value: "Файл удалён по ошибке пользователем. Восстановлен из бэкапа, добавлена корзина."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Переменные окружения не подхватываются сервисом"
+              - column:
+                  name: resolution
+                  value: "Имя переменной не совпадало. Исправлено имя, значения подхватились."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "СМС-сообщения зависли в очереди отправки"
+              - column:
+                  name: resolution
+                  value: "Очередь СМС-провайдера переполнена. Расчищена очередь, добавлен мониторинг."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Приложение не может подключиться к базе данных, ошибка connection refused"
+              - column:
+                  name: resolution
+                  value: "Перезапущен PostgreSQL, проверены max_connections. Настроен пул соединений с лимитом."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Скачивание файла не работает, 404 на файл"
+              - column:
+                  name: resolution
+                  value: "Файл удалён по ошибке пользователем. Восстановлен из бэкапа, добавлена корзина."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Токен авторизации истекает сразу, сессия не сохраняется"
+              - column:
+                  name: resolution
+                  value: "Исправлен TTL токена: был 60 секунд, теперь 8 часов. Сессия сохраняется."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Push-уведомления на телефон не приходят"
+              - column:
+                  name: resolution
+                  value: "Истёк сертификат у FCM: обновлён ключ push-сервиса, уведомления доставлены."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Веб-сервер не отвечает, страница не открывается"
+              - column:
+                  name: resolution
+                  value: "Nginx не мог достучаться до апстрима. Проверен и перезапущен backend."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Nginx возвращает 502, приложение недоступно"
+              - column:
+                  name: resolution
+                  value: "Сервер был выключен по техобслуживанию. Поднят, добавлен алерт на недоступность."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Настройки не применяются после перезапуска"
+              - column:
+                  name: resolution
+                  value: "Конфиг кэшировался при старте. Сброшен кэш, применены новые настройки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "API отдаёт 500 на каждый третий запрос, периодически сбоит"
+              - column:
+                  name: resolution
+                  value: "Проблема в пуле соединений: утечка connection. Добавлен validationQuery и ограничение на число соединений."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Email-рассылка упала с ошибкой SMTP"
+              - column:
+                  name: resolution
+                  value: "Неверный порт SMTP в конфиге. Исправлен порт и добавлена проверка отправки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Продюсер не может записать в топик, ошибка timeout"
+              - column:
+                  name: resolution
+                  value: "Обнаружен конфликт group.id у двух сервисов. Заданы уникальные group.id."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Веб-сервер не отвечает, страница не открывается"
+              - column:
+                  name: resolution
+                  value: "Nginx не мог достучаться до апстрима. Проверен и перезапущен backend."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Дашборд загружается больше минуты, пользователи недовольны"
+              - column:
+                  name: resolution
+                  value: "Тяжёлые данные вынесены в кэш, список грузится из Redis."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Nginx возвращает 502, приложение недоступно"
+              - column:
+                  name: resolution
+                  value: "Сервер был выключен по техобслуживанию. Поднят, добавлен алерт на недоступность."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Дашборд загружается больше минуты, пользователи недовольны"
+              - column:
+                  name: resolution
+                  value: "Тяжёлые данные вынесены в кэш, список грузится из Redis."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Список заказов в интерфейсе грузится очень долго"
+              - column:
+                  name: resolution
+                  value: "Фронтенд запрашивал лишние данные: ограничены поля и добавлена пагинация."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Настройки не применяются после перезапуска"
+              - column:
+                  name: resolution
+                  value: "Конфиг кэшировался при старте. Сброшен кэш, применены новые настройки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Интерфейс подтормаживает после обновления версии"
+              - column:
+                  name: resolution
+                  value: "После обновления выросли JS-бандлы. Включено lazy-loading и code splitting."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Пользователи не могут загрузить файл, ошибка загрузки"
+              - column:
+                  name: resolution
+                  value: "Обнаружена проблема с доступом к S3: обновлены права на бакет."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Строка поиска вводится, но результаты приходят очень долго"
+              - column:
+                  name: resolution
+                  value: "Оптимизирован поисковый запрос: устранён full table scan, добавлен покрывающий индекс."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Прогресс по курсу не сохраняется"
+              - column:
+                  name: resolution
+                  value: "Прогресс не сохранялся из-за ошибки в JS. Исправлен обработчик сохранения."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Сертификат не выдаётся после прохождения курса"
+              - column:
+                  name: resolution
+                  value: "Сертификат не генерировался из-за шаблона. Обновлён шаблон, выдача восстановлена."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "База данных не отвечает на запросы, сервисы падают с ошибкой"
+              - column:
+                  name: resolution
+                  value: "Найден медленный запрос без индекса, заблокировавший остальные. Добавлен индекс и pg_stat_activity контроль."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Выгрузка отчёта зависает, файл не формируется"
+              - column:
+                  name: resolution
+                  value: "Запрос для отчёта превышал таймаут. Оптимизирован запрос и добавлен async."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Сайт недоступен, ошибка соединения"
+              - column:
+                  name: resolution
+                  value: "Упал обработчик из-за нехватки файловых дескрипторов. Повышен лимит ulimit."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Файлы теряются после перезапуска хранилища"
+              - column:
+                  name: resolution
+                  value: "Была неверная настройка монтирования. Исправлен fstab, файлы сохраняются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Сообщения в Kafka не читаются, очередь растёт"
+              - column:
+                  name: resolution
+                  value: "Исправлен десериализатор JSON в консьюмере: была неверная структура события."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Авторизация падает с ошибкой на входе в личный кабинет"
+              - column:
+                  name: resolution
+                  value: "Найдена ошибка в хешировании пароля: неверная соль. Восстановлены учётные записи."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Уведомления в интерфейсе не отображаются"
+              - column:
+                  name: resolution
+                  value: "Баг в клиенте: уведомления скрывались из-за фильтра. Исправлен фильтр."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Консьюмер падает при чтении событий из топика"
+              - column:
+                  name: resolution
+                  value: "Увеличено число партиций и консьюмеров, добавлена параллельность обработки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "CPU на нодах кластера 100%, всё тормозит"
+              - column:
+                  name: resolution
+                  value: "Добавлены лимиты ресурсов и autoscaling. Кластер стабилизирован."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Сообщения теряются, некоторые события не доходят до обработчика"
+              - column:
+                  name: resolution
+                  value: "Исправлена настройка acks: продюсеру задан acks=all, потери сообщений устранены."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Формирование PDF-отчёта не работает"
+              - column:
+                  name: resolution
+                  value: "Обновлена библиотека генерации PDF, совместимая с новым JDK."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Консьюмер падает при чтении событий из топика"
+              - column:
+                  name: resolution
+                  value: "Увеличено число партиций и консьюмеров, добавлена параллельность обработки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Пользователи не могут загрузить файл, ошибка загрузки"
+              - column:
+                  name: resolution
+                  value: "Обнаружена проблема с доступом к S3: обновлены права на бакет."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Скачивание файла не работает, 404 на файл"
+              - column:
+                  name: resolution
+                  value: "Файл удалён по ошибке пользователем. Восстановлен из бэкапа, добавлена корзина."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Плановое задание не выполняется, данные не обновляются"
+              - column:
+                  name: resolution
+                  value: "Задание падало из-за отсутствия транзакции. Добавлена аннотация @Transactional."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "PostgreSQL потребляет 100% CPU, запросы не выполняются"
+              - column:
+                  name: resolution
+                  value: "Миграция не применилась из-за ошибки блокировки. Выполнена вручную, добавлены retry при миграциях."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Дашборд загружается больше минуты, пользователи недовольны"
+              - column:
+                  name: resolution
+                  value: "Тяжёлые данные вынесены в кэш, список грузится из Redis."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Полнотекстовый поиск по документам стал медленным после добавления данных"
+              - column:
+                  name: resolution
+                  value: "Расширена конфигурация Elasticsearch: добавлены шарды и refresh interval увеличен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Строка поиска вводится, но результаты приходят очень долго"
+              - column:
+                  name: resolution
+                  value: "Оптимизирован поисковый запрос: устранён full table scan, добавлен покрывающий индекс."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Приложение не может подключиться к базе данных, ошибка connection refused"
+              - column:
+                  name: resolution
+                  value: "Перезапущен PostgreSQL, проверены max_connections. Настроен пул соединений с лимитом."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Приложение не может подключиться к базе данных, ошибка connection refused"
+              - column:
+                  name: resolution
+                  value: "Перезапущен PostgreSQL, проверены max_connections. Настроен пул соединений с лимитом."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Продюсер не может записать в топик, ошибка timeout"
+              - column:
+                  name: resolution
+                  value: "Обнаружен конфликт group.id у двух сервисов. Заданы уникальные group.id."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Email-рассылка упала с ошибкой SMTP"
+              - column:
+                  name: resolution
+                  value: "Неверный порт SMTP в конфиге. Исправлен порт и добавлена проверка отправки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Переменные окружения не подхватываются сервисом"
+              - column:
+                  name: resolution
+                  value: "Имя переменной не совпадало. Исправлено имя, значения подхватились."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Крон не запускается, обработка очереди остановилась"
+              - column:
+                  name: resolution
+                  value: "Крон отключён на новой ноде: включён в конфиге. Расписание восстановлено."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Панель администратора открывается с задержкой"
+              - column:
+                  name: resolution
+                  value: "Сервер был под нагрузкой другого отчёта. Оптимизирован отчёт, интерфейс разгрузился."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Курс не открывается, страница обучения недоступна"
+              - column:
+                  name: resolution
+                  value: "Курс был скрыт конфигурацией. Снят флаг скрытия, курс доступен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Файлы теряются после перезапуска хранилища"
+              - column:
+                  name: resolution
+                  value: "Была неверная настройка монтирования. Исправлен fstab, файлы сохраняются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Синхронизация с маркетплейсом остановилась"
+              - column:
+                  name: resolution
+                  value: "Изменён адрес эндпоинта по спецификации. Обновлён конфиг интеграции."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Файлы теряются после перезапуска хранилища"
+              - column:
+                  name: resolution
+                  value: "Была неверная настройка монтирования. Исправлен fstab, файлы сохраняются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Веб-сервер не отвечает, страница не открывается"
+              - column:
+                  name: resolution
+                  value: "Nginx не мог достучаться до апстрима. Проверен и перезапущен backend."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "СМС-сообщения зависли в очереди отправки"
+              - column:
+                  name: resolution
+                  value: "Очередь СМС-провайдера переполнена. Расчищена очередь, добавлен мониторинг."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Сервер возвращает HTTP 500 на все запросы, пользователи не могут открыть ресурс"
+              - column:
+                  name: resolution
+                  value: "Перезапущен проблемный pod, в логах найдено переполнение heap. Увеличен лимит памяти, настроен healthcheck."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Push-уведомления на телефон не приходят"
+              - column:
+                  name: resolution
+                  value: "Истёк сертификат у FCM: обновлён ключ push-сервиса, уведомления доставлены."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "PostgreSQL потребляет 100% CPU, запросы не выполняются"
+              - column:
+                  name: resolution
+                  value: "Миграция не применилась из-за ошибки блокировки. Выполнена вручную, добавлены retry при миграциях."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Материалы курса не загружаются"
+              - column:
+                  name: resolution
+                  value: "Медиа-файлы не отдавались CDN. Исправлен кэш, материалы загружаются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск по каталогу грузится больше 10 секунд, пользователи жалуются"
+              - column:
+                  name: resolution
+                  value: "Добавлен индекс на таблицу товаров, время запроса снизилось с 10с до 300мс."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Главная страница падает с ошибкой 500 после деплоя нового релиза"
+              - column:
+                  name: resolution
+                  value: "Откачен релиз 2.3.1, причиной была несовместимость новой библиотеки. Пересобраны артефакты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "База данных не отвечает на запросы, сервисы падают с ошибкой"
+              - column:
+                  name: resolution
+                  value: "Найден медленный запрос без индекса, заблокировавший остальные. Добавлен индекс и pg_stat_activity контроль."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Потеряна связь с БД после миграции, таблицы не открываются"
+              - column:
+                  name: resolution
+                  value: "Утечка соединений в приложении: добавлен close() в finally и проверка на утечку через метрики."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Импорт данных из CSV завершается ошибкой"
+              - column:
+                  name: resolution
+                  value: "Ошибка парсинга CSV: некорректные разделители. Добавлена нормализация данных."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Сервис стартует, но с неверными параметрами"
+              - column:
+                  name: resolution
+                  value: "Опечатка в параметре. Исправлено значение, сервис работает корректно."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "API отдаёт 500 на каждый третий запрос, периодически сбоит"
+              - column:
+                  name: resolution
+                  value: "Проблема в пуле соединений: утечка connection. Добавлен validationQuery и ограничение на число соединений."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Материалы курса не загружаются"
+              - column:
+                  name: resolution
+                  value: "Медиа-файлы не отдавались CDN. Исправлен кэш, материалы загружаются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Отставание консьюмера большое, события обрабатываются с задержкой"
+              - column:
+                  name: resolution
+                  value: "Добавлен ретрай и dead-letter topic: упавшие сообщения больше не теряются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Поднимается нагрузка на БД, кластер деградирует"
+              - column:
+                  name: resolution
+                  value: "Добавлено кэширование запросов к БД, снижена нагрузка."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Поднимается нагрузка на БД, кластер деградирует"
+              - column:
+                  name: resolution
+                  value: "Добавлено кэширование запросов к БД, снижена нагрузка."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Поднимается нагрузка на БД, кластер деградирует"
+              - column:
+                  name: resolution
+                  value: "Добавлено кэширование запросов к БД, снижена нагрузка."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Сообщения в Kafka не читаются, очередь растёт"
+              - column:
+                  name: resolution
+                  value: "Исправлен десериализатор JSON в консьюмере: была неверная структура события."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Экспорт в Excel падает с ошибкой"
+              - column:
+                  name: resolution
+                  value: "Не хватало памяти для большого файла: переведено на потоковую запись."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Пользователи не могут войти в систему, пишет неверный пароль"
+              - column:
+                  name: resolution
+                  value: "Сброшен кэш токенов, обновлён секрет подписи JWT. Пользователи перелогинились."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Кластер работает медленно, задержки на всех сервисах"
+              - column:
+                  name: resolution
+                  value: "Найдена утечка в одном сервисе: рекурсивный вызов. Исправлено, нагрузка упала."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "База данных не отвечает на запросы, сервисы падают с ошибкой"
+              - column:
+                  name: resolution
+                  value: "Найден медленный запрос без индекса, заблокировавший остальные. Добавлен индекс и pg_stat_activity контроль."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск товаров зависает на запросе, страница не отвечает"
+              - column:
+                  name: resolution
+                  value: "Включено кэширование популярных запросов в Redis, нагрузка на БД снизилась в 3 раза."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Email-рассылка упала с ошибкой SMTP"
+              - column:
+                  name: resolution
+                  value: "Неверный порт SMTP в конфиге. Исправлен порт и добавлена проверка отправки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Пользователи не могут войти в систему, пишет неверный пароль"
+              - column:
+                  name: resolution
+                  value: "Сброшен кэш токенов, обновлён секрет подписи JWT. Пользователи перелогинились."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Уведомления в интерфейсе не отображаются"
+              - column:
+                  name: resolution
+                  value: "Баг в клиенте: уведомления скрывались из-за фильтра. Исправлен фильтр."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Сетевые задержки между сервисами выросли"
+              - column:
+                  name: resolution
+                  value: "Проблема в DNS-резолвинге: добавлен локальный кэш DNS."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Сервер возвращает HTTP 500 на все запросы, пользователи не могут открыть ресурс"
+              - column:
+                  name: resolution
+                  value: "Перезапущен проблемный pod, в логах найдено переполнение heap. Увеличен лимит памяти, настроен healthcheck."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Сервис стартует, но с неверными параметрами"
+              - column:
+                  name: resolution
+                  value: "Опечатка в параметре. Исправлено значение, сервис работает корректно."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Импорт данных из CSV завершается ошибкой"
+              - column:
+                  name: resolution
+                  value: "Ошибка парсинга CSV: некорректные разделители. Добавлена нормализация данных."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Материалы курса не загружаются"
+              - column:
+                  name: resolution
+                  value: "Медиа-файлы не отдавались CDN. Исправлен кэш, материалы загружаются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Приложение не может подключиться к базе данных, ошибка connection refused"
+              - column:
+                  name: resolution
+                  value: "Перезапущен PostgreSQL, проверены max_connections. Настроен пул соединений с лимитом."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Сервис не стартует после обновления конфигурации"
+              - column:
+                  name: resolution
+                  value: "Неверный синтаксис в YAML конфига. Исправлен синтаксис, сервис стартовал."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Отставание консьюмера большое, события обрабатываются с задержкой"
+              - column:
+                  name: resolution
+                  value: "Добавлен ретрай и dead-letter topic: упавшие сообщения больше не теряются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Загрузка документов падает, хранилище недоступно"
+              - column:
+                  name: resolution
+                  value: "Хранилище перезапущено, файлы смонтированы. Добавлен healthcheck."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Scheduler остановлен после деплоя"
+              - column:
+                  name: resolution
+                  value: "Scheduler не инициализировался из-за новой конфигурации. Исправлен бин."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск по заказам работает, но подтормаживает в пиковые часы"
+              - column:
+                  name: resolution
+                  value: "Проблема была в отсутствии connection pool. Настроен HikariCP, тайминги стабилизировались."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Главная страница падает с ошибкой 500 после деплоя нового релиза"
+              - column:
+                  name: resolution
+                  value: "Откачен релиз 2.3.1, причиной была несовместимость новой библиотеки. Пересобраны артефакты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Дашборд загружается больше минуты, пользователи недовольны"
+              - column:
+                  name: resolution
+                  value: "Тяжёлые данные вынесены в кэш, список грузится из Redis."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Подключение к БД рвётся через несколько минут работы"
+              - column:
+                  name: resolution
+                  value: "Виртуальная машина БД исчерпала RAM. Увеличены ресурсы и настроен autovacuum."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Сайт недоступен, ошибка соединения"
+              - column:
+                  name: resolution
+                  value: "Упал обработчик из-за нехватки файловых дескрипторов. Повышен лимит ulimit."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Курс не открывается, страница обучения недоступна"
+              - column:
+                  name: resolution
+                  value: "Курс был скрыт конфигурацией. Снят флаг скрытия, курс доступен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Формирование PDF-отчёта не работает"
+              - column:
+                  name: resolution
+                  value: "Обновлена библиотека генерации PDF, совместимая с новым JDK."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "После перезапуска сервер не поднялся"
+              - column:
+                  name: resolution
+                  value: "Порт занят другим процессом. Освобожден порт, сервер запущен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Сообщения теряются, некоторые события не доходят до обработчика"
+              - column:
+                  name: resolution
+                  value: "Исправлена настройка acks: продюсеру задан acks=all, потери сообщений устранены."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Пользователи не могут загрузить файл, ошибка загрузки"
+              - column:
+                  name: resolution
+                  value: "Обнаружена проблема с доступом к S3: обновлены права на бакет."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Список заказов в интерфейсе грузится очень долго"
+              - column:
+                  name: resolution
+                  value: "Фронтенд запрашивал лишние данные: ограничены поля и добавлена пагинация."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Вебинар-сервис недоступен, записи не загружаются"
+              - column:
+                  name: resolution
+                  value: "Добавлен resilience-механизм: circuit breaker и retry с экспоненциальной задержкой."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Сетевые задержки между сервисами выросли"
+              - column:
+                  name: resolution
+                  value: "Проблема в DNS-резолвинге: добавлен локальный кэш DNS."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Экспорт в Excel падает с ошибкой"
+              - column:
+                  name: resolution
+                  value: "Не хватало памяти для большого файла: переведено на потоковую запись."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск по заказам работает, но подтормаживает в пиковые часы"
+              - column:
+                  name: resolution
+                  value: "Проблема была в отсутствии connection pool. Настроен HikariCP, тайминги стабилизировались."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Полнотекстовый поиск по документам стал медленным после добавления данных"
+              - column:
+                  name: resolution
+                  value: "Расширена конфигурация Elasticsearch: добавлены шарды и refresh interval увеличен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Прогресс по курсу не сохраняется"
+              - column:
+                  name: resolution
+                  value: "Прогресс не сохранялся из-за ошибки в JS. Исправлен обработчик сохранения."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Полнотекстовый поиск по документам стал медленным после добавления данных"
+              - column:
+                  name: resolution
+                  value: "Расширена конфигурация Elasticsearch: добавлены шарды и refresh interval увеличен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Push-уведомления на телефон не приходят"
+              - column:
+                  name: resolution
+                  value: "Истёк сертификат у FCM: обновлён ключ push-сервиса, уведомления доставлены."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Письма не отправляются пользователям, уведомления не доходят"
+              - column:
+                  name: resolution
+                  value: "SMTP-сервер блокировал домен: подтверждён SPF/DKIM, письма пошли."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Ночная выгрузка не прошла"
+              - column:
+                  name: resolution
+                  value: "Выгрузка падала из-за временного недоступности БД. Добавлен retry."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Загрузка документов падает, хранилище недоступно"
+              - column:
+                  name: resolution
+                  value: "Хранилище перезапущено, файлы смонтированы. Добавлен healthcheck."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Отставание консьюмера большое, события обрабатываются с задержкой"
+              - column:
+                  name: resolution
+                  value: "Добавлен ретрай и dead-letter topic: упавшие сообщения больше не теряются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Скачивание файла не работает, 404 на файл"
+              - column:
+                  name: resolution
+                  value: "Файл удалён по ошибке пользователем. Восстановлен из бэкапа, добавлена корзина."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Ночная выгрузка не прошла"
+              - column:
+                  name: resolution
+                  value: "Выгрузка падала из-за временного недоступности БД. Добавлен retry."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Синхронизация с маркетплейсом остановилась"
+              - column:
+                  name: resolution
+                  value: "Изменён адрес эндпоинта по спецификации. Обновлён конфиг интеграции."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Панель администратора открывается с задержкой"
+              - column:
+                  name: resolution
+                  value: "Сервер был под нагрузкой другого отчёта. Оптимизирован отчёт, интерфейс разгрузился."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Фоновое задание упало с ошибкой, нужно перезапустить"
+              - column:
+                  name: resolution
+                  value: "Ошибка в логике задания исправлена, задание перезапущено вручную."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "СМС-сообщения зависли в очереди отправки"
+              - column:
+                  name: resolution
+                  value: "Очередь СМС-провайдера переполнена. Расчищена очередь, добавлен мониторинг."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Интерфейс подтормаживает после обновления версии"
+              - column:
+                  name: resolution
+                  value: "После обновления выросли JS-бандлы. Включено lazy-loading и code splitting."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Поднимается нагрузка на БД, кластер деградирует"
+              - column:
+                  name: resolution
+                  value: "Добавлено кэширование запросов к БД, снижена нагрузка."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск по каталогу грузится больше 10 секунд, пользователи жалуются"
+              - column:
+                  name: resolution
+                  value: "Добавлен индекс на таблицу товаров, время запроса снизилось с 10с до 300мс."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "PostgreSQL потребляет 100% CPU, запросы не выполняются"
+              - column:
+                  name: resolution
+                  value: "Миграция не применилась из-за ошибки блокировки. Выполнена вручную, добавлены retry при миграциях."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Строка поиска вводится, но результаты приходят очень долго"
+              - column:
+                  name: resolution
+                  value: "Оптимизирован поисковый запрос: устранён full table scan, добавлен покрывающий индекс."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "API внешнего сервиса возвращает 401, интеграция не авторизуется"
+              - column:
+                  name: resolution
+                  value: "Исправлен формат запроса: неверная кодировка payload. Согласован формат со стороной."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Отчёт в архиве не открывается после выгрузки"
+              - column:
+                  name: resolution
+                  value: "Архив не собирался из-за повреждённого файла. Добавлена проверка целостности."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Видео в курсе не воспроизводится"
+              - column:
+                  name: resolution
+                  value: "Видео-кодек не поддерживался. Перекодировано видео, воспроизведение работает."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "СМС-сообщения зависли в очереди отправки"
+              - column:
+                  name: resolution
+                  value: "Очередь СМС-провайдера переполнена. Расчищена очередь, добавлен мониторинг."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Выгрузка отчёта зависает, файл не формируется"
+              - column:
+                  name: resolution
+                  value: "Запрос для отчёта превышал таймаут. Оптимизирован запрос и добавлен async."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Scheduler остановлен после деплоя"
+              - column:
+                  name: resolution
+                  value: "Scheduler не инициализировался из-за новой конфигурации. Исправлен бин."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Диск хранилища заполнен, загрузки прекратились"
+              - column:
+                  name: resolution
+                  value: "Диск очищен от временных файлов, настроена ротация и лимиты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "После перезапуска сервер не поднялся"
+              - column:
+                  name: resolution
+                  value: "Порт занят другим процессом. Освобожден порт, сервер запущен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Интерфейс тормозит, страницы открываются долго"
+              - column:
+                  name: resolution
+                  value: "Найдено N+1 в запросах: добавлен fetch join, страница стала открываться мгновенно."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Логин через корпоративный портал не проходит, ошибка доступа"
+              - column:
+                  name: resolution
+                  value: "Обновлён конфиг LDAP: исправлен bind DN. Авторизация по корпоративной учётке восстановлена."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Сертификат не выдаётся после прохождения курса"
+              - column:
+                  name: resolution
+                  value: "Сертификат не генерировался из-за шаблона. Обновлён шаблон, выдача восстановлена."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Лендинг не открывается, сервер молчит"
+              - column:
+                  name: resolution
+                  value: "Ошибка конфигурации виртуального хоста. Исправлен конфиг nginx."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "API внешнего сервиса возвращает 401, интеграция не авторизуется"
+              - column:
+                  name: resolution
+                  value: "Исправлен формат запроса: неверная кодировка payload. Согласован формат со стороной."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Сообщения в Kafka не читаются, очередь растёт"
+              - column:
+                  name: resolution
+                  value: "Исправлен десериализатор JSON в консьюмере: была неверная структура события."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "500 Internal Server Error при сохранении заявки пользователем"
+              - column:
+                  name: resolution
+                  value: "Найдена необработанная ошибка при конвертации дат. Добавлен try/catch и валидация входных данных."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Один сервис нагружает весь кластер"
+              - column:
+                  name: resolution
+                  value: "Оптимизирован тяжёлый сервис: снижено потребление CPU в 2 раза."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "API отдаёт 500 на каждый третий запрос, периодически сбоит"
+              - column:
+                  name: resolution
+                  value: "Проблема в пуле соединений: утечка connection. Добавлен validationQuery и ограничение на число соединений."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Фоновое задание упало с ошибкой, нужно перезапустить"
+              - column:
+                  name: resolution
+                  value: "Ошибка в логике задания исправлена, задание перезапущено вручную."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Крон не запускается, обработка очереди остановилась"
+              - column:
+                  name: resolution
+                  value: "Крон отключён на новой ноде: включён в конфиге. Расписание восстановлено."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Сообщения теряются, некоторые события не доходят до обработчика"
+              - column:
+                  name: resolution
+                  value: "Исправлена настройка acks: продюсеру задан acks=all, потери сообщений устранены."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Экспорт в Excel падает с ошибкой"
+              - column:
+                  name: resolution
+                  value: "Не хватало памяти для большого файла: переведено на потоковую запись."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Авторизация падает с ошибкой на входе в личный кабинет"
+              - column:
+                  name: resolution
+                  value: "Найдена ошибка в хешировании пароля: неверная соль. Восстановлены учётные записи."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Сайт недоступен, ошибка соединения"
+              - column:
+                  name: resolution
+                  value: "Упал обработчик из-за нехватки файловых дескрипторов. Повышен лимит ulimit."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Лендинг не открывается, сервер молчит"
+              - column:
+                  name: resolution
+                  value: "Ошибка конфигурации виртуального хоста. Исправлен конфиг nginx."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Импорт данных из CSV завершается ошибкой"
+              - column:
+                  name: resolution
+                  value: "Ошибка парсинга CSV: некорректные разделители. Добавлена нормализация данных."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Подключение к БД рвётся через несколько минут работы"
+              - column:
+                  name: resolution
+                  value: "Виртуальная машина БД исчерпала RAM. Увеличены ресурсы и настроен autovacuum."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Кластер работает медленно, задержки на всех сервисах"
+              - column:
+                  name: resolution
+                  value: "Найдена утечка в одном сервисе: рекурсивный вызов. Исправлено, нагрузка упала."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Вебинар-сервис недоступен, записи не загружаются"
+              - column:
+                  name: resolution
+                  value: "Добавлен resilience-механизм: circuit breaker и retry с экспоненциальной задержкой."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Конфигурация профиля не найдена"
+              - column:
+                  name: resolution
+                  value: "Профиль не был указан при запуске. Добавлен SPRING_PROFILES_ACTIVE."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "PostgreSQL потребляет 100% CPU, запросы не выполняются"
+              - column:
+                  name: resolution
+                  value: "Миграция не применилась из-за ошибки блокировки. Выполнена вручную, добавлены retry при миграциях."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Крон не запускается, обработка очереди остановилась"
+              - column:
+                  name: resolution
+                  value: "Крон отключён на новой ноде: включён в конфиге. Расписание восстановлено."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Push-уведомления на телефон не приходят"
+              - column:
+                  name: resolution
+                  value: "Истёк сертификат у FCM: обновлён ключ push-сервиса, уведомления доставлены."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "SSO-вход работает, но после него не создаётся сессия в приложении"
+              - column:
+                  name: resolution
+                  value: "Добавлена синхронизация сессии с SSO через cookie. Вход стал стабильным."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Настройки не применяются после перезапуска"
+              - column:
+                  name: resolution
+                  value: "Конфиг кэшировался при старте. Сброшен кэш, применены новые настройки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Интерфейс тормозит, страницы открываются долго"
+              - column:
+                  name: resolution
+                  value: "Найдено N+1 в запросах: добавлен fetch join, страница стала открываться мгновенно."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "500 Internal Server Error при сохранении заявки пользователем"
+              - column:
+                  name: resolution
+                  value: "Найдена необработанная ошибка при конвертации дат. Добавлен try/catch и валидация входных данных."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Экспорт в Excel падает с ошибкой"
+              - column:
+                  name: resolution
+                  value: "Не хватало памяти для большого файла: переведено на потоковую запись."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Лендинг не открывается, сервер молчит"
+              - column:
+                  name: resolution
+                  value: "Ошибка конфигурации виртуального хоста. Исправлен конфиг nginx."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Отчёт в архиве не открывается после выгрузки"
+              - column:
+                  name: resolution
+                  value: "Архив не собирался из-за повреждённого файла. Добавлена проверка целостности."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Потеряна связь с БД после миграции, таблицы не открываются"
+              - column:
+                  name: resolution
+                  value: "Утечка соединений в приложении: добавлен close() в finally и проверка на утечку через метрики."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Формирование PDF-отчёта не работает"
+              - column:
+                  name: resolution
+                  value: "Обновлена библиотека генерации PDF, совместимая с новым JDK."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "SSO-вход работает, но после него не создаётся сессия в приложении"
+              - column:
+                  name: resolution
+                  value: "Добавлена синхронизация сессии с SSO через cookie. Вход стал стабильным."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Сообщения в Kafka не читаются, очередь растёт"
+              - column:
+                  name: resolution
+                  value: "Исправлен десериализатор JSON в консьюмере: была неверная структура события."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Продюсер не может записать в топик, ошибка timeout"
+              - column:
+                  name: resolution
+                  value: "Обнаружен конфликт group.id у двух сервисов. Заданы уникальные group.id."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Авторизация падает с ошибкой на входе в личный кабинет"
+              - column:
+                  name: resolution
+                  value: "Найдена ошибка в хешировании пароля: неверная соль. Восстановлены учётные записи."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Сообщения теряются, некоторые события не доходят до обработчика"
+              - column:
+                  name: resolution
+                  value: "Исправлена настройка acks: продюсеру задан acks=all, потери сообщений устранены."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Диск хранилища заполнен, загрузки прекратились"
+              - column:
+                  name: resolution
+                  value: "Диск очищен от временных файлов, настроена ротация и лимиты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Выгрузка отчёта зависает, файл не формируется"
+              - column:
+                  name: resolution
+                  value: "Запрос для отчёта превышал таймаут. Оптимизирован запрос и добавлен async."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Интеграция с CRM упала, данные не синхронизируются"
+              - column:
+                  name: resolution
+                  value: "Обновлены креды интеграции с CRM: истёк API-ключ. Ключ перевыпущен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Сертификат не выдаётся после прохождения курса"
+              - column:
+                  name: resolution
+                  value: "Сертификат не генерировался из-за шаблона. Обновлён шаблон, выдача восстановлена."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Отставание консьюмера большое, события обрабатываются с задержкой"
+              - column:
+                  name: resolution
+                  value: "Добавлен ретрай и dead-letter topic: упавшие сообщения больше не теряются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск по каталогу грузится больше 10 секунд, пользователи жалуются"
+              - column:
+                  name: resolution
+                  value: "Добавлен индекс на таблицу товаров, время запроса снизилось с 10с до 300мс."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Переменные окружения не подхватываются сервисом"
+              - column:
+                  name: resolution
+                  value: "Имя переменной не совпадало. Исправлено имя, значения подхватились."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Логин через корпоративный портал не проходит, ошибка доступа"
+              - column:
+                  name: resolution
+                  value: "Обновлён конфиг LDAP: исправлен bind DN. Авторизация по корпоративной учётке восстановлена."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Диск хранилища заполнен, загрузки прекратились"
+              - column:
+                  name: resolution
+                  value: "Диск очищен от временных файлов, настроена ротация и лимиты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск по каталогу грузится больше 10 секунд, пользователи жалуются"
+              - column:
+                  name: resolution
+                  value: "Добавлен индекс на таблицу товаров, время запроса снизилось с 10с до 300мс."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Подключение к БД рвётся через несколько минут работы"
+              - column:
+                  name: resolution
+                  value: "Виртуальная машина БД исчерпала RAM. Увеличены ресурсы и настроен autovacuum."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Ночная выгрузка не прошла"
+              - column:
+                  name: resolution
+                  value: "Выгрузка падала из-за временного недоступности БД. Добавлен retry."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "SSO-вход работает, но после него не создаётся сессия в приложении"
+              - column:
+                  name: resolution
+                  value: "Добавлена синхронизация сессии с SSO через cookie. Вход стал стабильным."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Отчёт в архиве не открывается после выгрузки"
+              - column:
+                  name: resolution
+                  value: "Архив не собирался из-за повреждённого файла. Добавлена проверка целостности."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Бэкенд отдаёт 500 при обращении к API, в логах исключение NullPointerException"
+              - column:
+                  name: resolution
+                  value: "Исправлена null-проверка в сервисе заявок, добавлен интеграционный тест на пустого пользователя."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Главная страница падает с ошибкой 500 после деплоя нового релиза"
+              - column:
+                  name: resolution
+                  value: "Откачен релиз 2.3.1, причиной была несовместимость новой библиотеки. Пересобраны артефакты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Плановое задание не выполняется, данные не обновляются"
+              - column:
+                  name: resolution
+                  value: "Задание падало из-за отсутствия транзакции. Добавлена аннотация @Transactional."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Веб-сервер не отвечает, страница не открывается"
+              - column:
+                  name: resolution
+                  value: "Nginx не мог достучаться до апстрима. Проверен и перезапущен backend."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Список заказов в интерфейсе грузится очень долго"
+              - column:
+                  name: resolution
+                  value: "Фронтенд запрашивал лишние данные: ограничены поля и добавлена пагинация."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Плановое задание не выполняется, данные не обновляются"
+              - column:
+                  name: resolution
+                  value: "Задание падало из-за отсутствия транзакции. Добавлена аннотация @Transactional."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Интерфейс тормозит, страницы открываются долго"
+              - column:
+                  name: resolution
+                  value: "Найдено N+1 в запросах: добавлен fetch join, страница стала открываться мгновенно."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Пользователи не могут войти в систему, пишет неверный пароль"
+              - column:
+                  name: resolution
+                  value: "Сброшен кэш токенов, обновлён секрет подписи JWT. Пользователи перелогинились."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Фоновое задание упало с ошибкой, нужно перезапустить"
+              - column:
+                  name: resolution
+                  value: "Ошибка в логике задания исправлена, задание перезапущено вручную."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Потеряна связь с БД после миграции, таблицы не открываются"
+              - column:
+                  name: resolution
+                  value: "Утечка соединений в приложении: добавлен close() в finally и проверка на утечку через метрики."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Сервис не стартует после обновления конфигурации"
+              - column:
+                  name: resolution
+                  value: "Неверный синтаксис в YAML конфига. Исправлен синтаксис, сервис стартовал."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Поиск работает медленно"
+              - column:
+                  name: symptom
+                  value: "Поиск товаров зависает на запросе, страница не отвечает"
+              - column:
+                  name: resolution
+                  value: "Включено кэширование популярных запросов в Redis, нагрузка на БД снизилась в 3 раза."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Письма не отправляются пользователям, уведомления не доходят"
+              - column:
+                  name: resolution
+                  value: "SMTP-сервер блокировал домен: подтверждён SPF/DKIM, письма пошли."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Формирование PDF-отчёта не работает"
+              - column:
+                  name: resolution
+                  value: "Обновлена библиотека генерации PDF, совместимая с новым JDK."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Фоновое задание упало с ошибкой, нужно перезапустить"
+              - column:
+                  name: resolution
+                  value: "Ошибка в логике задания исправлена, задание перезапущено вручную."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Логин через корпоративный портал не проходит, ошибка доступа"
+              - column:
+                  name: resolution
+                  value: "Обновлён конфиг LDAP: исправлен bind DN. Авторизация по корпоративной учётке восстановлена."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбои фоновых заданий"
+              - column:
+                  name: symptom
+                  value: "Scheduler остановлен после деплоя"
+              - column:
+                  name: resolution
+                  value: "Scheduler не инициализировался из-за новой конфигурации. Исправлен бин."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Видео в курсе не воспроизводится"
+              - column:
+                  name: resolution
+                  value: "Видео-кодек не поддерживался. Перекодировано видео, воспроизведение работает."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Прогресс по курсу не сохраняется"
+              - column:
+                  name: resolution
+                  value: "Прогресс не сохранялся из-за ошибки в JS. Исправлен обработчик сохранения."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Выгрузка отчёта зависает, файл не формируется"
+              - column:
+                  name: resolution
+                  value: "Запрос для отчёта превышал таймаут. Оптимизирован запрос и добавлен async."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Внешний платёжный шлюз не отвечает, оплата не проходит"
+              - column:
+                  name: resolution
+                  value: "Платежный шлюз был на техработах. Добавлен таймаут и повторная попытка оплаты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "Подключение к БД рвётся через несколько минут работы"
+              - column:
+                  name: resolution
+                  value: "Виртуальная машина БД исчерпала RAM. Увеличены ресурсы и настроен autovacuum."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "Сайт недоступен, ошибка соединения"
+              - column:
+                  name: resolution
+                  value: "Упал обработчик из-за нехватки файловых дескрипторов. Повышен лимит ulimit."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибка при экспорте данных"
+              - column:
+                  name: symptom
+                  value: "Отчёт в архиве не открывается после выгрузки"
+              - column:
+                  name: resolution
+                  value: "Архив не собирался из-за повреждённого файла. Добавлена проверка целостности."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Курс не открывается, страница обучения недоступна"
+              - column:
+                  name: resolution
+                  value: "Курс был скрыт конфигурацией. Снят флаг скрытия, курс доступен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Kafka не обрабатывает сообщения"
+              - column:
+                  name: symptom
+                  value: "Консьюмер падает при чтении событий из топика"
+              - column:
+                  name: resolution
+                  value: "Увеличено число партиций и консьюмеров, добавлена параллельность обработки."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "500 Internal Server Error при сохранении заявки пользователем"
+              - column:
+                  name: resolution
+                  value: "Найдена необработанная ошибка при конвертации дат. Добавлен try/catch и валидация входных данных."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Список заказов в интерфейсе грузится очень долго"
+              - column:
+                  name: resolution
+                  value: "Фронтенд запрашивал лишние данные: ограничены поля и добавлена пагинация."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Ошибки конфигурации сервиса"
+              - column:
+                  name: symptom
+                  value: "Конфигурация профиля не найдена"
+              - column:
+                  name: resolution
+                  value: "Профиль не был указан при запуске. Добавлен SPRING_PROFILES_ACTIVE."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "API внешнего сервиса возвращает 401, интеграция не авторизуется"
+              - column:
+                  name: resolution
+                  value: "Исправлен формат запроса: неверная кодировка payload. Согласован формат со стороной."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Файлы теряются после перезапуска хранилища"
+              - column:
+                  name: resolution
+                  value: "Была неверная настройка монтирования. Исправлен fstab, файлы сохраняются."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с курсом и обучением"
+              - column:
+                  name: symptom
+                  value: "Видео в курсе не воспроизводится"
+              - column:
+                  name: resolution
+                  value: "Видео-кодек не поддерживался. Перекодировано видео, воспроизведение работает."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Интеграция с CRM упала, данные не синхронизируются"
+              - column:
+                  name: resolution
+                  value: "Обновлены креды интеграции с CRM: истёк API-ключ. Ключ перевыпущен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "500 Internal Server Error при сохранении заявки пользователем"
+              - column:
+                  name: resolution
+                  value: "Найдена необработанная ошибка при конвертации дат. Добавлен try/catch и валидация входных данных."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Снижение производительности кластера"
+              - column:
+                  name: symptom
+                  value: "Один сервис нагружает весь кластер"
+              - column:
+                  name: resolution
+                  value: "Оптимизирован тяжёлый сервис: снижено потребление CPU в 2 раза."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Синхронизация с маркетплейсом остановилась"
+              - column:
+                  name: resolution
+                  value: "Изменён адрес эндпоинта по спецификации. Обновлён конфиг интеграции."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Интеграция с CRM упала, данные не синхронизируются"
+              - column:
+                  name: resolution
+                  value: "Обновлены креды интеграции с CRM: истёк API-ключ. Ключ перевыпущен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Токен авторизации истекает сразу, сессия не сохраняется"
+              - column:
+                  name: resolution
+                  value: "Исправлен TTL токена: был 60 секунд, теперь 8 часов. Сессия сохраняется."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Сервер возвращает HTTP 500 на все запросы, пользователи не могут открыть ресурс"
+              - column:
+                  name: resolution
+                  value: "Перезапущен проблемный pod, в логах найдено переполнение heap. Увеличен лимит памяти, настроен healthcheck."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Бэкенд отдаёт 500 при обращении к API, в логах исключение NullPointerException"
+              - column:
+                  name: resolution
+                  value: "Исправлена null-проверка в сервисе заявок, добавлен интеграционный тест на пустого пользователя."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблема с файловым хранилищем"
+              - column:
+                  name: symptom
+                  value: "Загрузка документов падает, хранилище недоступно"
+              - column:
+                  name: resolution
+                  value: "Хранилище перезапущено, файлы смонтированы. Добавлен healthcheck."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Логин через корпоративный портал не проходит, ошибка доступа"
+              - column:
+                  name: resolution
+                  value: "Обновлён конфиг LDAP: исправлен bind DN. Авторизация по корпоративной учётке восстановлена."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Недоступность веб-сервера"
+              - column:
+                  name: symptom
+                  value: "После перезапуска сервер не поднялся"
+              - column:
+                  name: resolution
+                  value: "Порт занят другим процессом. Освобожден порт, сервер запущен."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Токен авторизации истекает сразу, сессия не сохраняется"
+              - column:
+                  name: resolution
+                  value: "Исправлен TTL токена: был 60 секунд, теперь 8 часов. Сессия сохраняется."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "База данных недоступна"
+              - column:
+                  name: symptom
+                  value: "База данных не отвечает на запросы, сервисы падают с ошибкой"
+              - column:
+                  name: resolution
+                  value: "Найден медленный запрос без индекса, заблокировавший остальные. Добавлен индекс и pg_stat_activity контроль."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Сбой интеграции с внешним сервисом"
+              - column:
+                  name: symptom
+                  value: "Синхронизация с маркетплейсом остановилась"
+              - column:
+                  name: resolution
+                  value: "Изменён адрес эндпоинта по спецификации. Обновлён конфиг интеграции."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с уведомлениями"
+              - column:
+                  name: symptom
+                  value: "Письма не отправляются пользователям, уведомления не доходят"
+              - column:
+                  name: resolution
+                  value: "SMTP-сервер блокировал домен: подтверждён SPF/DKIM, письма пошли."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Медленный ответ интерфейса"
+              - column:
+                  name: symptom
+                  value: "Интерфейс тормозит, страницы открываются долго"
+              - column:
+                  name: resolution
+                  value: "Найдено N+1 в запросах: добавлен fetch join, страница стала открываться мгновенно."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "HTTP 500 на сервере"
+              - column:
+                  name: symptom
+                  value: "Главная страница падает с ошибкой 500 после деплоя нового релиза"
+              - column:
+                  name: resolution
+                  value: "Откачен релиз 2.3.1, причиной была несовместимость новой библиотеки. Пересобраны артефакты."
+        - insert:
+            tableName: knowledge_doc
+            columns:
+              - column:
+                  name: title
+                  value: "Проблемы с авторизацией"
+              - column:
+                  name: symptom
+                  value: "Токен авторизации истекает сразу, сессия не сохраняется"
+              - column:
+                  name: resolution
+                  value: "Исправлен TTL токена: был 60 секунд, теперь 8 часов. Сессия сохраняется."

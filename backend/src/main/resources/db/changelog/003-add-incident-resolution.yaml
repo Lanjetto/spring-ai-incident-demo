@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: incident-buckets
+      changes:
+        - addColumn:
+            tableName: incident
+            columns:
+              - column:
+                  name: resolution
+                  type: TEXT
+              - column:
+                  name: closed_at
+                  type: TIMESTAMPTZ

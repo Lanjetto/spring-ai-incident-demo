@@ -1,0 +1,128 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: incident-buckets
+      changes:
+        - createSequence:
+            sequenceName: knowledge_doc_seq
+
+        - createTable:
+            tableName: incident
+            remarks: 'Кластер смыслово похожих сообщений пользователей'
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: level
+                  type: VARCHAR(2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: message_count
+                  type: INT
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: base_level
+                  type: VARCHAR(2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hint
+                  type: TEXT
+              - column:
+                  name: created_at
+                  type: TIMESTAMPTZ
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_message_at
+                  type: TIMESTAMPTZ
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: user_message
+            remarks: 'Сырой отчёт пользователя, отнесённый к инциденту'
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: text
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: received_at
+                  type: TIMESTAMPTZ
+                  constraints:
+                    nullable: false
+              - column:
+                  name: incident_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_message_incident
+                    references: incident(id)
+
+        - createTable:
+            tableName: knowledge_doc
+            remarks: 'Исторический инцидент с решением (база для RAG)'
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  defaultValueComputed: nextval('knowledge_doc_seq')
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: symptom
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: resolution
+                  type: TEXT
+                  constraints:
+                    nullable: false
+
+        - createIndex:
+            tableName: incident
+            indexName: idx_incident_level
+            columns:
+              - column:
+                  name: level
+
+        - createIndex:
+            tableName: user_message
+            indexName: idx_user_message_incident
+            columns:
+              - column:
+                  name: incident_id

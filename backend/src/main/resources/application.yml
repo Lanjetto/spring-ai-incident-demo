@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: incident-bucket-start
+  config:
+    import: optional:file:.env[.properties]
+
+  ai:
+    model:
+      chat: openai
+      embedding: ollama
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      base-url: ${OPENAI_BASE_URL:http://srv-spugpu/generative}
+      chat:
+        options:
+          model: ${OPENAI_CHAT_MODEL:Qwen3-32B}
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+#      chat:
+#        options:
+#          model: "granite4.1:8b"
+      embedding:
+        model: ${OLLAMA_EMBEDDING_MODEL:mxbai-embed-large}
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        dimensions: 1024
+        index-type: HNSW
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/incident_buckets}
+    username: ${DB_USERNAME:myuser}
+    password: ${DB_PASSWORD:secret}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+  liquibase:
+    enabled: false
+
+logging:
+  level:
+    com.example.incidentbuckets: INFO
