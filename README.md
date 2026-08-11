@@ -24,20 +24,16 @@ MVP по Spring AI: приём сообщений пользователей, к
 
 ### 1. Инфраструктура (PostgreSQL+pgvector и Kafka)
 
-На этой машине они уже запущены в WSL и использовать docker-compose **не нужно**:
-
 | Сервис | Контейнер | Порт |
 |--------|-----------|------|
 | PostgreSQL + pgvector | `demo-pgvector` | 5433 |
 | Kafka | `kafka` | 9092 |
-| Ollama (модели уже загружены) | `demo_llm-ollama-1` | 11434 |
+| Ollama| `demo_llm-ollama-1` | 11434 |
 
 Для чистой среды — поднять всё из docker-compose:
 ```
-wsl docker compose up -d
+docker compose up -d
 ```
-⚠️ Порты 5433/9092 в compose совпадают с существующими контейнерами — перед запуском
-на этой машине остановите `demo-pgvector` и `kafka`.
 
 ### 2. Backend
 
@@ -158,9 +154,9 @@ incident-buckets/
 
 | Переменная | Назначение |
 |------------|------------|
-| `OPENAI_API_KEY` | Ключ для OpenAI-совместимого endpoint (для локального LLM — любое значение) |
-| `OPENAI_BASE_URL` | Базовый URL чат-модели (по умолчанию `http://srv-spugpu/generative`) |
-| `OPENAI_CHAT_MODEL` | Модель чата (по умолчанию `Qwen3-32B`) |
+| `OPENAI_API_KEY` | Ключ для OpenAI-совместимого endpoint |
+| `OPENAI_BASE_URL` | Базовый URL чат-модели  |
+| `OPENAI_CHAT_MODEL` | Модель чата  |
 | `OLLAMA_BASE_URL` | Адрес Ollama (по умолчанию `http://localhost:11434`) |
 | `OLLAMA_EMBEDDING_MODEL` | Эмбеддинг-модель (по умолчанию `mxbai-embed-large`) |
 | `DB_URL` / `DB_USERNAME` / `DB_PASSWORD` | Подключение к PostgreSQL |
@@ -187,10 +183,6 @@ incident-buckets/
 | GET | `/api/incidents/{id}` | Инцидент со всеми сообщениями |
 | POST | `/api/incidents/{id}/hint` | Сгенерировать (и закэшировать) RAG-подсказку ИИ |
 
-Ошибки возвращаются единым форматом:
-```json
-{"status":400,"error":"Bad Request","message":"Тело запроса не читается: проверьте формат JSON","timestamp":"..."}
-```
 
 Примеры запросов: `scripts/examples.ps1`.
 
@@ -205,11 +197,3 @@ incident-buckets/
 | `scripts/examples.ps1` | Примеры curl-запросов ко всем endpoint'ам |
 | `backend/src/main/resources/scripts/gen_seed.py` | Генератор 300 записей исторических инцидентов для Liquibase-сида |
 
----
-
-## ADR (ключевые решения)
-
-- `0001` — Бакет — это уровень критичности, а не отдельная сущность
-- `0002` — Отнесение сообщения к инциденту решает LLM, а не эмбеддинг-поиск
-- `0003` — Эскалация на уровне инцидента по числу сообщений
-- `0004` — Асинхронная обработка сообщений через Kafka
