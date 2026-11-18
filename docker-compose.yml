@@ -3,7 +3,7 @@ services:
     image: pgvector/pgvector:pg16
     container_name: incident-db
     environment:
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: incident_buckets
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: secret
     ports:
@@ -11,7 +11,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U myuser -d mydatabase"]
+      test: ["CMD-SHELL", "pg_isready -U myuser -d incident_buckets"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -41,5 +41,52 @@ services:
       timeout: 10s
       retries: 15
 
+  ollama:
+    image: ollama/ollama:latest
+    container_name: incident-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list > /dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  ollama-init:
+    image: ollama/ollama:latest
+    container_name: incident-ollama-init
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        ollama pull granite4.1:8b
+        ollama pull mxbai-embed-large
+    volumes:
+      - ollama-models:/root/.ollama
+    restart: "no"
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: incident-open-webui
+    depends_on:
+      ollama:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_SECRET_KEY=111
+    volumes:
+      - open-webui-data:/app/backend/data
+    restart: unless-stopped
+
 volumes:
   db-data:
+  ollama-models:
+  open-webui-data:

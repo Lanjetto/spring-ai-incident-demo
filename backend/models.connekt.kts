@@ -21,6 +21,6 @@ POST("$host/api/generate") {
                 "repeat_penalty": 1.1
             }
         }
-        """.trimIndent()
+        """
     )
 }
